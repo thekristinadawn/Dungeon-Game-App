@@ -4,57 +4,69 @@ using System.Text;
 
 namespace Dungeon_Game_App
 {
-    public class Weapon
+    internal class Weapon
     {
         //name, minimum damage, max damage, is two-handed, bonus hit chance
         //we use underscores to assign properties for the variables we want 
-        private string _name;
-        private int _minDamage;
-        private int _maxDamage;
-        private int _isTwoHanded;
-        private int _bonusHitChance;
-        public int _remainingAmmo;
+        private string weaponName;
+        private int weaponMinDamage;
+        private int weaponMaxDamage;
+        private int isTwoHanded;
+        private int bonusHitChance;
+        private int remainingAmmo;
+        private int randomWeaponDamage;
 
-}
         //properties
-        public string Name
+        //Ability to create a weapon object to be used by the character
+        public string WeaponName
         {
-            get { return _name; }
-            set { _name = value; }
+            get { return weaponName; }
+            set { weaponName = value; }
         }
 
-        public int MinDamage
+        public int WeaponMinDamage
         {
-            get { return _minDamage; }
+            get { return weaponMinDamage; }
             set
             {
-                if (value > 0 && value <= MaxDamage)
+                if (value > 0 && value <= weaponMaxDamage)
                 {
-                    _minDamage = value; //rolling for damage twice
+                    weaponMinDamage = value; //rolling for damage twice
                 }
                 else
                 {
-                    _minDamage = 1;
+                    weaponMinDamage = 1;
                 }
             }
         }
-        public int MaxDamage
+        public int WeaponMaxDamage
         {
-            get { return _maxDamage; }
-            set { _maxDamage = value; }
+            get { return weaponMaxDamage; }
+            set { weaponMaxDamage = value; }
         }
 
         public int IsTwoHanded
         {
-            get { return _isTwoHanded; }
-            set { _isTwoHanded = value; }
+            get { return isTwoHanded; }
+            set { isTwoHanded = value; }
         }
         public int BonusHitChance
         {
-            get { return _bonusHitChance; }
-            set { _bonusHitChance = value; }
+            get { return bonusHitChance; }
+            set { bonusHitChance = value; }
         }
-        //Ability to create a weapon object to be used by the character
+
+        public int RemainingAmmo
+        {
+            get { return remainingAmmo; }
+            set { remainingAmmo = value; }
+        }
+
+        public int RandomWeaponDamage
+        {
+            get { return randomWeaponDamage; }
+            set { randomWeaponDamage = value; }
+        }
 
     }
 }

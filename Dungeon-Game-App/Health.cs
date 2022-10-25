@@ -4,16 +4,17 @@ using System.Text;
 
 namespace Dungeon_Game_App
 {
-    internal class Character
+    internal class Health
     {
-        //name, hit chance, max health, health, block, equipped weapon
         private string _playerName;
         private int _hitChance;
         private int _numOfLives;
-        private int _health
+        private int _currentHealth;
         private int _maxHealth;
         private int _block; //ability to defend
-        private Weapon _weapon;
+        private int _minDamage;
+        private int _maxDamage;
+        
 
         public string PlayerName
         {
@@ -33,20 +34,26 @@ namespace Dungeon_Game_App
             set { _numOfLives = value; }
         }
 
-        public int Health
+        public int CurrentHealth
         {
-            get { return _health; }
+            get { return _currentHealth; }
             set
             {
                 if (value <= MaxHealth)
                 {
-                    _health = value; //returning to battle - where your previous health was entering a new battle 
+                    _currentHealth = value; //returning to battle - where your previous health was entering a new battle 
                 }
                 else
                 {
-                    _health = 1;
+                    _currentHealth = 1;
                 }
             }
+        }
+
+        public int MaxHealth
+        {
+            get { return _maxHealth; }
+            set { _maxHealth = value; }
         }
         public int Block
         {
@@ -54,24 +61,17 @@ namespace Dungeon_Game_App
             set { _block = value; }
         }
 
-        public Weapon Weapon
+        public int MinDamage
         {
-            get { return _weapon; }
-            set { _weapon = value; }
+            get { return _minDamage; }
+            set { _minDamage = value; }
         }
 
+        public int MaxDamage
+        {
+            get { return _maxDamage; }
+            set { _maxDamage = value; }
+        }
 
-        //System.Random
-
-        //set up properties
-
-
-
-        
-        /* TODO:
-        Ability to create a character object to be used in the dungeon for creating your player and the monsters they battle
-        Calculate the hit chance (e.g. player hit chance + weapon bonus hit chance)
-        Calculate the damage (e.g. using System.Random to choose a number between the equipped weapon minimum and maximum damage)
-        */
     }
-
+}

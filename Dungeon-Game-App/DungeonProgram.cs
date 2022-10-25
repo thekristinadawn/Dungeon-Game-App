@@ -26,37 +26,40 @@ namespace Dungeon_Game_App
                 ▀▀             
                 };
 
-            string[] GameDescription =
+            
+
+            string[] gameDescription =
             {
                 "Welcome to the Dungeon of Doom. The dungeon is full of rooms and treasures.",
                 "Any treasure that you may find, is yours to keep. The treasures come with great risk.",
-                "Monsters plague the Dungeon and may be in any room. The monsters do not fear people and",
+                "Monsters plague the Dungeon and may be in any room. The monsters are fearless and",
                 "will attack. Your journey begins now..."
                 
             };
-            
+
             string[] dungeonMenu =
             {
                 "------------------------",
                 "|  Choose your action: |",
                 "|  A) ATTACK           |",
                 "|  R) RUN AWAY         |",
-                "|  G) GRAB TREASURE    |",
+                "|  C) COLLECT TREASURE |",
                 "|  P) PLAYER INFO      |",
                 "|  M) MONSTER INFO     |",
                 "|  E) END GAME         |"
                 "------------------------\n"
             };
 
+            bool exit = false;
 
             //name character
-            Character name = new Character(inputName, 1, 1, 1, null);
+            Player name = new Player(inputName, 1, 1, 1, null);
 
             //intro to pick character variables and weapons
             string introduction = "Welcome to the Dungeon.";
             string charCreate = "You will now pick whom you would like to be.";
 
-            string[] characterMenu =
+            string[] playerMenu =
             {
                 "--------------------------------",
                 "|  Choose whom you want to be: |",
@@ -66,6 +69,23 @@ namespace Dungeon_Game_App
                 "|  W) WARRIOR                  |",
                 "--------------------------------\n"
             };
+
+            bool validPlayerChoice = false;
+
+            string[] weaponMenu =
+            {
+                "----------------------------",
+                "|  Choose your weapon:     |",
+                "|  D) DOUBLE EDGED SWORD   |",
+                "|  P) PISTOL               |",
+                "|  R) REVOLVER             |",
+                "|  B) BLASTER              |",
+                "----------------------------\n"
+            };
+
+            bool validWeaponChoice = false;
+
+            //room locations
 
             string[] directionMenu =
            {
@@ -78,9 +98,24 @@ namespace Dungeon_Game_App
                 "--------------------------------\n"
             };
 
+            bool validDirectionChoice = false;
+
+            //create monster dictionary
+
+            Dictionary<int, Rooms> dungeonRooms = new Dictionary<int, Rooms>();
+            Rooms dungeonRoom1 = new Rooms()
+            {
+                RoomID = 1;
+                RoomName = "The Silent Quarters "
+                RoomDescription = "You enter a medium-sized room. The silence is eerie"
+            }
+
+
+            Console.WriteLine(titleGame);
+            Console.WriteLine(gameDescription);
+
             ConsoleKey userChoice = Console.ReadKey(intercept: true).Key;
 
-            bool exit = false;
 
             switch (userChoice)
             {
