@@ -129,7 +129,7 @@ namespace Dungeon_Game_App
                 switch(key)
                 {
                     case ConsoleKey.A:
-                        Console.WriteLine("You have attacked!");
+                        Console.WriteLine("You have attacked!"); //
                         break;
                     case ConsoleKey.R:
                         Console.WriteLine("You have ran away!");
