@@ -7,22 +7,25 @@ namespace Dungeon_Game_App
     internal class Player : Health
     {
         //Character info
-        private string playerClass;
         private string playerName;
+        private string playerFighter;
         private string playerWeapon;
        
         public int playerHitDamage;
 
-        public string PlayerClass
-        {
-            get { return playerClass; }
-            set { playerClass = value; }
-        }
+        
         public string PlayerName
         {
             get { return playerName; }
             set { playerName = value; }
         }
+
+        public string PlayerFighter
+        {
+            get { return playerFighter; }
+            set { playerFighter = value; }
+        }
+
 
         public string PlayerWeapon
         {

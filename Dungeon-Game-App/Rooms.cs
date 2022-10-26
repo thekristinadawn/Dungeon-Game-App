@@ -34,7 +34,7 @@ namespace Dungeon_Game_App
             get { return dungeonRooms; }
             set { dungeonRooms = value; }
         }
-        public string Style
+        public string RoomStyle
         {
             get { return roomStyle; }
             set { roomStyle = value; }

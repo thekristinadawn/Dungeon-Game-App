@@ -37,40 +37,22 @@ namespace Dungeon_Game_App
                 
             };
 
+           
+
             string[] dungeonMenu =
             {
-                "------------------------",
-                "|  Choose your action: |",
-                "|  A) ATTACK           |",
-                "|  R) RUN AWAY         |",
-                "|  C) COLLECT TREASURE |",
-                "|  P) PLAYER INFO      |",
-                "|  M) MONSTER INFO     |",
-                "|  E) END GAME         |"
-                "------------------------\n"
+                "--------------------------",
+                "|  Choose your action:   |",
+                "|  A) ATTACK             |",
+                "|  R) RUN AWAY           |",
+                "|  C) COLLECT TREASURE   |",
+                "|  G) GO TO ANOTHER ROOM |",
+                "|  P) PLAYER INFO        |",
+                "|  M) MONSTER INFO       |",
+                "|  E) END GAME           |",
+                "--------------------------\n"
             };
 
-            bool exit = false;
-
-            //name character
-            Player name = new Player(inputName, 1, 1, 1, null);
-
-            //intro to pick character variables and weapons
-            string introduction = "Welcome to the Dungeon.";
-            string charCreate = "You will now pick whom you would like to be.";
-
-            string[] playerMenu =
-            {
-                "--------------------------------",
-                "|  Choose whom you want to be: |",
-                "|  K) KNIGHT                   |",
-                "|  R) RANGER                   |",
-                "|  S) SOLDIER                  |",
-                "|  W) WARRIOR                  |",
-                "--------------------------------\n"
-            };
-
-            bool validPlayerChoice = false;
 
             string[] weaponMenu =
             {
@@ -100,59 +82,224 @@ namespace Dungeon_Game_App
 
             bool validDirectionChoice = false;
 
-            //create monster dictionary
+            //create rooms dictionary
 
             Dictionary<int, Rooms> dungeonRooms = new Dictionary<int, Rooms>();
             Rooms dungeonRoom1 = new Rooms()
             {
-                RoomID = 1;
-                RoomName = "The Silent Quarters "
-                RoomDescription = "You enter a medium-sized room. The silence is eerie"
-            }
+                RoomID = 1,
+                RoomName = "The Silent Quarters ",
+                RoomStyle = "You enter a medium-sized room. The silence is eerie and it smells musty.",
+                IsLocked = true,
+                IsLit = false,
+                IsClearOfMonsters = false
+            };
+            dungeonRooms.Add(1, dungeonRoom1);
+
+            Rooms dungeonRoom2 = new Rooms()
+            {
+                RoomID = 2,
+                RoomName = "The Lost Tunnel",
+                RoomStyle = "You enter a narrow tunnel like room. The brick walls are damp and slimy.",
+                IsLocked = false,
+                IsLit = true,
+                IsClearOfMonsters = true
+
+            };
+            dungeonRooms.Add(2, dungeonRoom2);
+
+            Rooms dungeonRoom3 = new Rooms()
+            {
+                RoomID = 3,
+                RoomName = "The Wicked Chambers",
+                RoomStyle = "The room is large and filled with stuff where monsters can easily hide.",
+                IsLocked = true,
+                IsLit = true,
+                IsClearOfMonsters = false
+            };
+            dungeonRooms.Add(3, dungeonRoom3);
+
+            Rooms 4 = new Rooms()
+            {
+                RoomID = 4,
+                RoomName = "The Invisible Pits",
+                RoomStyle = "The room is small and visibility is low. The air is filled with dust and the walls are covered with cobwebs.",
+                IsLocked = true,
+                IsLit = false,
+                IsClearOfMonsters = false
+            };
+            dungeonRooms.Add(4, dungeonRoom4);
+
+            Rooms 5 = new Rooms()
+            {
+                RoomID = 5,
+                RoomName = "The Frozen Quarters",
+                RoomStyle = "The first thing you notice is the drop in temperature. The room causes you to shiver...",
+                IsLocked = false,
+                IsLit = false,
+                IsClearOfMonsters = false
+            };
+            dungeonRooms.Add(5, dungeonRoom5);
+
+            Rooms 6 = new Rooms()
+            {
+                RoomID = 5,
+                RoomName = "The Twisted Maze",
+                RoomStyle = "This room is tricky and like a maze. Walls everywhere and you're not sure which way to turn.",
+                IsLocked = true,
+                IsLit = false,
+                IsClearOfMonsters = false
+            };
+            dungeonRooms.Add(6, dungeonRoom6);
+
+            //monsters dictionary
+
+            //create rooms dictionary
+
+            Dictionary<int, Monsters> monsters = new Dictionary<int, Monsters>();
+            Monsters monster1 = new Monsters()
+            {
+                MonsterID = 1,
+                MonsterName = "Vaporman",
+                Block = 3,
+                MaxHealth = 75,
+                MinDamage = 5,
+                MaxDamage = 25
+            };
+            monsters.Add(1, monster1);
+
+            Monsters monster2 = new Monsters()
+            {
+                MonsterID = 2,
+                MonsterName = "The Crying Blob",
+                Block = 4,
+                MaxHealth = 95,
+                MinDamage = 3,
+                MaxDamage = 14
+            };
+            monsters.Add(2, monster2);
+
+            Monsters monster3 = new Monsters()
+            {
+                MonsterID = 3,
+                MonsterName = "The Sneaky Alien",
+                Block = 2,
+                MaxHealth = 60,
+                MinDamage = 3,
+                MaxDamage = 9
+            };
+            monsters.Add(3, monster3);
+
+            Monsters monster4 = new Monsters()
+            {
+                MonsterID = 4,
+                MonsterName = "The Wondrous Freak",
+                Block = 6,
+                MaxHealth = 80,
+                MinDamage = 2,
+                MaxDamage = 40
+            };
+            monsters.Add(4, monster4);
+
+            Monsters monster5 = new Monsters()
+            {
+                MonsterID = 5,
+                MonsterName = "The Flaming Dragon",
+                Block = 10,
+                MaxHealth = 100,
+                MinDamage = 10,
+                MaxDamage = 20
+            };
+            monsters.Add(5, monster5);
 
 
+            //start of game
             Console.WriteLine(titleGame);
             Console.WriteLine(gameDescription);
 
-            ConsoleKey userChoice = Console.ReadKey(intercept: true).Key;
+            string[] startMenu =
+           {
+                "------------------------",
+                "|  Choose your action: |",
+                "|  P) PLAYER CREATION  |",
+                "|  E) END GAME         |",
+                "------------------------\n"
+            };
 
+            string[] playerMenu =
+           {
+                "--------------------------------",
+                "|  Choose whom you want to be: |",
+                "|  K) KNIGHT                   |",
+                "|  R) RANGER                   |",
+                "|  S) SOLDIER                  |",
+                "|  W) WARRIOR                  |",
+                "--------------------------------\n"
+            };
 
-            switch (userChoice)
+            bool exit = false;
+            bool validPlayerChoice = false;
+
+            do
             {
-                case ConsoleKey.K:
-                    Console.WriteLine("Good choice wise knight, you have been equipped with a Double-Edged sword.");
-                    Weapon sword = new Weapon() //object notation, mostly used at VU
-                    {
-                        Name = "Double Edged Sword",
-                        MinDamage = 0,
-                        MaxDamage = 8,
-                        IsTwoHanded = true,
-                        BonusHitChance = .25f
-                    };
-                    break;
-                case ConsoleKey.S:
-                    Console.WriteLine("Good choice wise soldier, you have been equipped with a M4 Carbine.");
-                    Weapon gun = new Weapon() 
-                    {
-                        Name = "M4 Carbine",
-                        MinDamage = 0,
-                        MaxDamage = 10,
-                        IsTwoHanded = true,
-                        BonusHitChance = .25f
-                    };
-                    break;
-                case ConsoleKey.R:
-                    Console.WriteLine("Good choice ranger, you have been equipped with an axe.");
-                    Weapon gun = new Weapon()
-                    {
-                        Name = "Rifle",
-                        MinDamage = 0,
-                        MaxDamage = 6,
-                        IsTwoHanded = true,
-                        BonusHitChance = .25f      
-                    }
-                    break;
-            }
+                Console.WriteLine(startMenu);
+                ConsoleKey userChoice = Console.ReadKey(true).Key;
+
+                switch (userChoice)
+                { 
+                    case ConsoleKey.P:
+                    Console.WriteLine("Enter your name:");
+                    Player.playerName = Console.ReadLine();
+                        do
+                        {
+                            Console.WriteLine(playerMenu);
+                            ConsoleKey userPlayer = Console.ReadKey(true).Key;
+
+                            if (userPlayer == ConsoleKey.K)
+                            {
+                                Console.WriteLine("Good choice wise knight.";
+                                Player.PlayerFighter = "Knight";
+                                Player.Block = 4;
+                                Player.MaxHealth = 75;
+                                Player.HitChance = 12;
+                                validPlayerChoice = true;
+                            }
+                            else if (userPlayer == ConsoleKey.R)
+                            {
+                                Console.WriteLine("Good choice good ranger.";
+                                Player.PlayerFighter = "Ranger";
+                                Player.Block = 5;
+                                Player.MaxHealth = 80;
+                                Player.HitChance = 10;
+                                validPlayerChoice = true;
+                            }
+                            else if (userPlayer == ConsoleKey.S)
+                            {
+                                Console.WriteLine("Good choice good soldier.";
+                                Player.PlayerFighter = "Soldier";
+                                Player.Block = 6;
+                                Player.MaxHealth = 90;
+                                Player.HitChance = 15;
+                                validPlayerChoice = true;
+                            }
+                            else if (userPlayer == ConsoleKey.W)
+                            {
+                                Console.WriteLine("Good choice warrior.";
+                                Player.PlayerFighter = "Warrior";
+                                Player.Block = 10;
+                                Player.MaxHealth = 100;
+                                Player.HitChance = 20;
+                                validPlayerChoice = true;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Please enter a valid choice from the menu options!");
+                                    continue;
+                            }
+
+
+                        }while (validPlayerChoice != true);
+
 
             do
             {
